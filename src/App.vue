@@ -107,6 +107,7 @@ const onSubmit = handleSubmit(() => {
             <div class="form-item" id="email">
               <label for="emailAdress">Email Address *</label>
               <input
+                id="emailAdress"
                 v-model="email"
                 autocomplete="off"
                 type="email"
