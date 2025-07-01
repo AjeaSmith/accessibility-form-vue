@@ -66,63 +66,59 @@ const onSubmit = handleSubmit(() => {
     <form @submit="onSubmit">
       <div class="app-form">
         <h1 class="heading">Contact Us</h1>
-        <fieldset>
-          <div class="form-group">
-            <div class="form-item" id="firstname">
-              <label for="firstName">First Name *</label>
-              <input
-                v-model="firstName"
-                type="text"
-                id="firstName"
-                name="firstName"
-                aria-required="true"
-                :aria-describedby="errors.firstName ? 'firstName-error' : null"
-                :aria-invalid="!!errors.firstName"
-                :class="{ errorField: errors.firstName }"
-              />
-              <span
-                v-if="errors.firstName"
-                class="errorMessage"
-                id="firstName-error"
-                role="alert"
-                >{{ errors.firstName }}</span
-              >
-            </div>
-            <div class="form-item" id="lastname">
-              <label for="lastName">Last Name *</label>
-              <input
-                v-model="lastName"
-                type="text"
-                name="lastName"
-                id="lastName"
-                aria-required="true"
-                :aria-describedby="errors.lastName ? 'lastName-error' : null"
-                :aria-invalid="!!errors.lastName"
-                :class="{ errorField: errors.lastName }"
-              />
-              <span v-if="errors.lastName" class="errorMessage" id="lastName-error" role="alert">{{
-                errors.lastName
-              }}</span>
-            </div>
-            <div class="form-item" id="email">
-              <label for="emailAdress">Email Address *</label>
-              <input
-                id="emailAdress"
-                v-model="email"
-                autocomplete="off"
-                type="email"
-                name="email"
-                aria-required="true"
-                :aria-describedby="errors.email ? 'email-error' : null"
-                :aria-invalid="!!errors.email"
-                :class="{ errorField: errors.email }"
-              />
-              <span v-if="errors.email" class="errorMessage" id="email-error" role="alert">{{
-                errors.email
-              }}</span>
-            </div>
+
+        <div class="form-group">
+          <div class="form-item" id="firstname">
+            <label for="firstName">First Name *</label>
+            <input
+              v-model="firstName"
+              type="text"
+              id="firstName"
+              name="firstName"
+              aria-required="true"
+              :aria-describedby="errors.firstName ? 'firstName-error' : null"
+              :aria-invalid="!!errors.firstName"
+              :class="{ errorField: errors.firstName }"
+            />
+            <span v-if="errors.firstName" class="errorMessage" id="firstName-error" role="alert">{{
+              errors.firstName
+            }}</span>
           </div>
-        </fieldset>
+          <div class="form-item" id="lastname">
+            <label for="lastName">Last Name *</label>
+            <input
+              v-model="lastName"
+              type="text"
+              name="lastName"
+              id="lastName"
+              aria-required="true"
+              :aria-describedby="errors.lastName ? 'lastName-error' : null"
+              :aria-invalid="!!errors.lastName"
+              :class="{ errorField: errors.lastName }"
+            />
+            <span v-if="errors.lastName" class="errorMessage" id="lastName-error" role="alert">{{
+              errors.lastName
+            }}</span>
+          </div>
+          <div class="form-item" id="email">
+            <label for="emailAdress">Email Address *</label>
+            <input
+              id="emailAdress"
+              v-model="email"
+              autocomplete="off"
+              type="email"
+              name="email"
+              aria-required="true"
+              :aria-describedby="errors.email ? 'email-error' : null"
+              :aria-invalid="!!errors.email"
+              :class="{ errorField: errors.email }"
+            />
+            <span v-if="errors.email" class="errorMessage" id="email-error" role="alert">{{
+              errors.email
+            }}</span>
+          </div>
+        </div>
+
         <fieldset>
           <legend>Query Type *</legend>
           <div class="radio">
@@ -155,7 +151,7 @@ const onSubmit = handleSubmit(() => {
             }}</span>
           </div>
         </fieldset>
-        <fieldset>
+        <section>
           <div class="form-item">
             <label for="message">Message *</label>
             <textarea
@@ -172,8 +168,8 @@ const onSubmit = handleSubmit(() => {
               errors.message
             }}</span>
           </div>
-        </fieldset>
-        <fieldset>
+        </section>
+        <section>
           <div class="terms">
             <div class="terms-wraps">
               <input
@@ -191,7 +187,7 @@ const onSubmit = handleSubmit(() => {
               errors.terms
             }}</span>
           </div>
-        </fieldset>
+        </section>
         <button type="submit">Submit</button>
       </div>
     </form>
@@ -291,16 +287,19 @@ form {
     margin-bottom: 2rem;
   }
 }
+label {
+  margin-bottom: 0.5rem;
+}
+#email {
+  margin-bottom: 1rem;
+}
 fieldset {
   border: none;
   padding: 0;
   margin-bottom: 1.5rem;
 
-  label {
-    margin-bottom: 0.5rem;
-  }
   legend {
-    margin-bottom: 1rem;
+    margin-block: 0.5rem;
   }
 
   label[for='general'],
@@ -351,6 +350,7 @@ textarea {
 }
 
 .terms {
+  margin-block:2.5rem;
   display: flex;
   flex-direction: column;
   input {
