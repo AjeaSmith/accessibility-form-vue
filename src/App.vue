@@ -124,7 +124,18 @@ const onSubmit = handleSubmit(() => {
           <div class="radio">
             <div class="radio-group" :class="{ queryTypeError: errors.queryType }">
               <div class="radio-item">
-                <input
+                <label>
+                  <input
+                    v-model="queryType"
+                    type="radio"
+                    id="general"
+                    value="General Enquiry"
+                    :aria-describedby="errors.queryType ? 'queryType-error' : null"
+                    :aria-invalid="!!errors.queryType"
+                  />
+                  <p>General Enquiry</p>
+                </label>
+                <!-- <input
                   v-model="queryType"
                   type="radio"
                   id="general"
@@ -132,7 +143,7 @@ const onSubmit = handleSubmit(() => {
                   :aria-describedby="errors.queryType ? 'queryType-error' : null"
                   :aria-invalid="!!errors.queryType"
                 />
-                <label for="general">General Enquiry</label>
+                <label for="general">General Enquiry</label> -->
               </div>
               <div class="radio-item">
                 <input
@@ -171,18 +182,19 @@ const onSubmit = handleSubmit(() => {
         </section>
         <section>
           <div class="terms">
-            <div class="terms-wraps">
+            <label>
               <input
                 v-model="terms"
                 type="checkbox"
                 id="terms"
                 name="terms"
+                class="custom-checkbox"
                 aria-required="true"
                 :aria-describedby="errors.terms ? 'terms-error' : null"
                 :aria-invalid="!!errors.terms"
               />
-              <label for="terms">I consent to being contacted by the team *</label>
-            </div>
+              <p class="term">I consent to being contacted by the team *</p>
+            </label>
             <span v-if="errors.terms" class="errorMessage" id="terms-error" role="alert">{{
               errors.terms
             }}</span>
@@ -258,18 +270,13 @@ textarea:focus-visible {
   outline: 1px solid var(--clr-green-600);
 }
 
-.radio-item:has(input:checked) {
-  background-color: var(--clr-green-200);
-  outline: 1px solid var(--clr-green-600);
-}
-
 form {
   display: grid;
   align-content: center;
   max-width: 46rem;
+  margin-block: 3rem;
   margin-inline: auto;
   padding-inline: 2.25rem;
-  height: 100vh;
 }
 
 .heading {
@@ -309,6 +316,49 @@ fieldset {
   }
 }
 
+.terms label {
+  display: flex;
+}
+.custom-checkbox {
+  width: 18px;
+  height: 18px;
+  appearance: none;
+  border: 2px solid var(--clr-green-500);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+.custom-checkbox:checked {
+  border: none;
+  background-image: url('/images/icon-checkbox-check.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.radio-item label {
+  margin-bottom: 0;
+}
+.radio-item:has(input:checked) {
+  background-color: var(--clr-green-200);
+  outline: 1px solid var(--clr-green-600);
+}
+
+input[type='radio'] {
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  appearance: none;
+  border: 2px solid var(--clr-green-500);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+input[type='radio']:checked {
+  border: none;
+  background-image: url('/images/icon-radio-selected.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .form-group {
   display: grid;
   grid-template-columns: 1fr;
@@ -332,6 +382,12 @@ fieldset {
     padding: 1rem;
     border-radius: 8px;
   }
+
+  .radio-item label {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+  }
 }
 
 textarea {
@@ -350,7 +406,7 @@ textarea {
 }
 
 .terms {
-  margin-block:2.5rem;
+  margin-block: 2.5rem;
   display: flex;
   flex-direction: column;
   input {

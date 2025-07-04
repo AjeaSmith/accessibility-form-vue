@@ -16,7 +16,7 @@
 }
 
 body {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   color: var(--clr-green-900);
   background: var(--clr-green-200);
   font-family: 'Karla', sans-serif;
